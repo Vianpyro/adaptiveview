@@ -145,7 +145,7 @@ public class ViewDistanceHandler {
         return switch(config.getBroadcastChangesDefault()) {
             case ALL -> true;
             case NONE -> false;
-            case OPS -> AdaptiveViewMod.getServer().getPlayerManager().isOperator(player.getGameProfile());
+            case OPS -> AdaptiveViewMod.getServer().getPlayerManager().isOperator(player.getPlayerConfigEntry());
         };
     }
 }

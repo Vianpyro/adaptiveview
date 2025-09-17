@@ -229,7 +229,7 @@ public class LockManager {
         return switch(config.getBroadcastLockDefault()) {
             case ALL -> true;
             case NONE -> false;
-            case OPS -> AdaptiveViewMod.getServer().getPlayerManager().isOperator(player.getGameProfile());
+            case OPS -> AdaptiveViewMod.getServer().getPlayerManager().isOperator(player.getPlayerConfigEntry());
         };
     }
 }
