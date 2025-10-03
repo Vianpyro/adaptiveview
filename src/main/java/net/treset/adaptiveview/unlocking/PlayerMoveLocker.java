@@ -11,12 +11,12 @@ public class PlayerMoveLocker extends Locker {
     public PlayerMoveLocker(ServerPlayerEntity player, int distance, LockTarget target, LockManager lockManager) {
         super(distance, target, lockManager);
         this.player = player;
-        this.startPos = player.getPos();
+        this.startPos = player.getEntityPos();
     }
 
     @Override
     public boolean shouldUnlock() {
-        return this.player.isDisconnected() || !this.player.getPos().equals(this.startPos);
+        return this.player.isDisconnected() || !this.player.getEntityPos().equals(this.startPos);
     }
 
     @Override
