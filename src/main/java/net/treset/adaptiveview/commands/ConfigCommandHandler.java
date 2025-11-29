@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.command.DefaultPermissions;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.treset.adaptiveview.config.Config;
@@ -680,7 +681,7 @@ public class ConfigCommandHandler {
 
     public void registerCommands(LiteralArgumentBuilder<ServerCommandSource> builder) {
         builder.then(CommandManager.literal("config")
-                .requires(source -> source.hasPermissionLevel(2))
+                .requires(s -> s.getPermissions().hasPermission(DefaultPermissions.GAMEMASTERS))
                 .executes(this::list)
                 .then(CommandManager.literal("status")
                         .executes(this::list)

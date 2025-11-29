@@ -4,6 +4,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.command.DefaultPermissions;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -281,7 +282,7 @@ public class LockCommandHandler {
                         .executes(this::status)
                 )
                 .then(CommandManager.literal("main")
-                        .requires(source -> source.hasPermissionLevel(2))
+                        .requires(source -> source.getPermissions().hasPermission(DefaultPermissions.GAMEMASTERS))
                         .then(CommandManager.argument("chunks", IntegerArgumentType.integer(2, 32))
                                 .executes(this::allChunks)
                                 .then(CommandManager.literal("timeout")
@@ -302,7 +303,7 @@ public class LockCommandHandler {
                         )
                 )
                 .then(CommandManager.literal("view")
-                        .requires(source -> source.hasPermissionLevel(2))
+                        .requires(source -> source.getPermissions().hasPermission(DefaultPermissions.GAMEMASTERS))
                         .then(CommandManager.argument("chunks", IntegerArgumentType.integer(2, 32))
                                 .executes(this::viewChunks)
                                 .then(CommandManager.literal("timeout")
@@ -323,7 +324,7 @@ public class LockCommandHandler {
                         )
                 )
                 .then(CommandManager.literal("simulation")
-                        .requires(source -> source.hasPermissionLevel(2))
+                        .requires(source -> source.getPermissions().hasPermission(DefaultPermissions.GAMEMASTERS))
                         .then(CommandManager.argument("chunks", IntegerArgumentType.integer(2, 32))
                                 .executes(this::simChunks)
                                 .then(CommandManager.literal("timeout")
@@ -344,7 +345,7 @@ public class LockCommandHandler {
                         )
                 )
                 .then(CommandManager.literal("chunk-tick")
-                        .requires(source -> source.hasPermissionLevel(2))
+                        .requires(source -> source.getPermissions().hasPermission(DefaultPermissions.GAMEMASTERS))
                         .then(CommandManager.argument("chunks", IntegerArgumentType.integer(2, 32))
                                 .executes(this::chunkTickChunks)
                                 .then(CommandManager.literal("timeout")
@@ -366,7 +367,7 @@ public class LockCommandHandler {
                 )
         )
         .then(CommandManager.literal("unlock")
-                .requires(source -> source.hasPermissionLevel(2))
+                .requires(source -> source.getPermissions().hasPermission(DefaultPermissions.GAMEMASTERS))
                 .executes(this::status)
                 .then(CommandManager.literal("all")
                         .executes(this::unlockAll)
