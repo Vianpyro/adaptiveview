@@ -21,6 +21,6 @@
             }
         }
     },
-    "postCreateCommand": "sed -i 's/\\r$//' gradlew && chmod +x gradlew && ./gradlew --version",
+    "postCreateCommand": "./gradlew --version",
     "remoteUser": "root"
 }
